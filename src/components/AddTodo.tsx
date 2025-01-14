@@ -32,6 +32,7 @@ const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
       <form onSubmit={handleSubmit} className="mb-4 flex justify-center">
         <div className="flex w-full">
           <input
+            autoFocus
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
