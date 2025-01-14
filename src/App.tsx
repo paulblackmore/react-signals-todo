@@ -36,8 +36,8 @@ const App: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <header className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-bold">Todo List ({todos.length})</h1>
+      <header className="flex flex-col md:flex-row justify-between items-center mb-4 bg-slate-200 p-10 ">
+        <h1 className="text-xl font-bold">Completed Todos ({todos.length})</h1>
         <nav>
           <a href="#!" className="mr-4">
             Link1
