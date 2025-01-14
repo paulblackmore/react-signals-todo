@@ -8,7 +8,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
+    if (storedTodos?.length) {
+      console.log('check storedTodos', storedTodos);
       setTodos(JSON.parse(storedTodos));
     }
   }, []);
@@ -38,10 +39,8 @@ const App: React.FC = () => {
     <div className="container mx-auto p-4">
       <header className="flex flex-col md:flex-row justify-between items-center mb-4 bg-slate-200 p-10 ">
         <h1 className="text-xl font-bold">Completed Todos ({todos.length})</h1>
-        <nav>
-          <a href="#!" className="mr-4">
-            Link1
-          </a>
+        <nav className="flex gap-2">
+          <a href="#!">Link1</a>
           <a href="#!">Link2</a>
         </nav>
       </header>
