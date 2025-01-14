@@ -4,15 +4,11 @@ import TodoList from './components/TodoList';
 import AddTodo from './components/AddTodo';
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos?.length) {
-      console.log('check storedTodos', storedTodos);
-      setTodos(JSON.parse(storedTodos));
-    }
-  }, []);
+  const [todos, setTodos] = useState<Todo[]>(
+    localStorage.getItem('todos')
+      ? JSON.parse(localStorage.getItem('todos') as string)
+      : [],
+  );
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
