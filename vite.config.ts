@@ -1,8 +1,17 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+type UserConfigExport = {
+  plugins: any[];
+  test: {
+    globals: boolean;
+    environment: 'jsdom';
+    setupFiles: string;
+  };
+};
+
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(<UserConfigExport>{
   plugins: [
     react({
       babel: {
@@ -10,4 +19,9 @@ export default defineConfig({
       },
     }),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './tests/setup.js',
+  },
 });
