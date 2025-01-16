@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { z } from 'zod';
+import { todos } from '../signals/todos-signal';
 
 const todoTextSchema = z.string().min(1, 'Todo text is required');
 
-interface AddTodoProps {
-  addTodo: (text: string) => void;
-}
-
-const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
+const AddTodo = () => {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  const addTodo = (text: string) => {
+    todos.value = [...todos.value, { id: Date.now(), text, completed: false }];
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

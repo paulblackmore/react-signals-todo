@@ -1,27 +1,12 @@
-import React from 'react';
-import { Todo } from '../types';
 import TodoItem from './TodoItem';
+import { todos } from '../signals/todos-signal';
+import { Todo } from '../types';
 
-interface TodoListProps {
-  todos: Todo[];
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-}
-
-const TodoList: React.FC<TodoListProps> = ({
-  todos,
-  toggleTodo,
-  deleteTodo,
-}) => {
+const TodoList = () => {
   return (
     <ul>
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
-        />
+      {todos.value.map((todo: Todo) => (
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>
   );

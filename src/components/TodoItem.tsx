@@ -1,17 +1,21 @@
-import React from 'react';
+import { todos } from '../signals/todos-signal';
 import { Todo } from '../types';
 
-interface TodoItemProps {
+type Props = {
   todo: Todo;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-}
+};
 
-const TodoItem: React.FC<TodoItemProps> = ({
-  todo,
-  toggleTodo,
-  deleteTodo,
-}) => {
+const TodoItem = ({ todo }: Props) => {
+  const toggleTodo = (id: number) => {
+    todos.value = todos.value.map((todo: Todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+    );
+  };
+
+  const deleteTodo = (id: number) => {
+    todos.value = todos.value.filter((todo: Todo) => todo.id !== id);
+  };
+
   const handleToggle = () => {
     toggleTodo(todo.id);
   };
