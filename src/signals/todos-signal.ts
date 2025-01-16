@@ -1,13 +1,13 @@
 import { computed, effect, signal } from '@preact/signals-react';
-import {
-  getTodosFromLocalStorage,
-  setTodosToLocalStorage,
-} from '../local-storage/todos-local';
 import { Todo } from '../types';
 
-export const todos = signal(getTodosFromLocalStorage());
+export const todos = signal(
+  localStorage.getItem('todos')
+    ? JSON.parse(localStorage.getItem('todos') as string)
+    : [],
+);
 
-effect(() => setTodosToLocalStorage(todos.value));
+effect(() => localStorage.setItem('todos', JSON.stringify(todos.value)));
 
 export const completedTodoCount = computed(
   () => todos.value.filter((todo: Todo) => todo.completed).length,
