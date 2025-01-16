@@ -1,6 +1,8 @@
-import { completedTodoCount } from '../signals/todos-signal';
+type Props = {
+  completedTodoCount: number;
+};
 
-const Header = () => {
+const Header = ({ completedTodoCount }: Props) => {
   return (
     <header className="flex flex-col md:flex-row justify-between items-center mb-4 bg-slate-200 p-10 ">
       <h1 className="text-xl font-bold">

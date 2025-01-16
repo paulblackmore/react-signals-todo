@@ -1,11 +1,14 @@
 import TodoItem from './TodoItem';
-import { todos } from '../signals/todos-signal';
 import { Todo } from '../types';
 
-const TodoList = () => {
+type Props = {
+  todos: Todo[];
+};
+
+const TodoList = ({ todos }: Props) => {
   return (
     <ul>
-      {todos.value.map((todo: Todo) => (
+      {todos.map((todo: Todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>
