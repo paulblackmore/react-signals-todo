@@ -26,8 +26,9 @@ const TodoItem = ({ todo }: Props) => {
 
   return (
     <li className="flex justify-between items-center w-full my-4">
-      <div className="flex gap-2 item-center">
+      <label>
         <input
+          data-testid="completed"
           type="checkbox"
           checked={todo.completed}
           onChange={handleToggle}
@@ -35,7 +36,7 @@ const TodoItem = ({ todo }: Props) => {
         <span className={todo.completed ? 'line-through' : ''}>
           {todo.text}
         </span>
-      </div>
+      </label>
       <button
         className="bg-transparent text-red-700 font-semibold hover:text-red-500 py-1 px-2 border border-red-500 hover:border-red-500 rounded"
         onClick={handleDelete}
